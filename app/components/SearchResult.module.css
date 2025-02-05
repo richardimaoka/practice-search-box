@@ -1,0 +1,31 @@
+.component {
+  /* Cancel the default <a> decoration */
+  text-decoration: none;
+  color: inherit;
+
+  /* icon-beside-text layout */
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-items: start;
+  column-gap: 8px;
+
+  /* item size */
+  font-size: 1.2rem;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  /* text color */
+  color: black;
+}
+
+.component:hover {
+  background-color: #d3d3d3;
+}
+
+.text {
+  font-size: 0.875rem;
+}

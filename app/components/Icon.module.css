@@ -1,0 +1,11 @@
+/* 
+ *  `span.component`, instead of `.component`.
+ *  This is to win the specificity over className="material-symbols-outlined".
+ *  "material-symbols-outlined" defines the `font-size` property, so, to change the `font-size`, more specific selector is needed.
+ *  https://developers.google.com/fonts/docs/material_symbols#styling_icons_in_material_design
+ */
+span.component {
+  font-size: 1.5rem;
+  font-variation-settings: "wght" 400;
+  color: #252525;
+}

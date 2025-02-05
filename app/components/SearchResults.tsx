@@ -1,3 +1,4 @@
+import { SearchResult } from "./SearchResult";
 import styles from "./SearchResults.module.css";
 
 type Props = {};
@@ -5,33 +6,18 @@ type Props = {};
 export function SearchResults(props: Props) {
   return (
     <div className={styles.component}>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div> <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div> <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div> <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
-      <div>a</div>
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
+      <SearchResult text={"Material Symbols Import"} />
     </div>
   );
 }
