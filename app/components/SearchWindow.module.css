@@ -1,0 +1,19 @@
+.component {
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  /* Using min() for responsive layout */
+  /* For small screens, occupy 80svh/90svw */
+  /* For large screens, don't go beyond 40rem */
+  height: min(80svh, 40rem);
+  width: min(90svw, 40rem);
+
+  background-color: white;
+
+  border-radius: 16px;
+}
+
+.footer {
+  border-top: solid 1px #e6e6e6;
+  height: 20px;
+}
