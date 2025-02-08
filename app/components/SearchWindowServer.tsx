@@ -12,7 +12,9 @@ export async function SearchWindowServer(props: Props) {
   //
   // (e.g.) If the backend returns in 1 second, then typing a 5-letter word,
   //        you will get the result 5 seconds later.
-  const results = await getSearchResults("");
+  const results = getSearchResults("");
 
-  return <SearchWindowClient initialSearchText="" initialResults={results} />;
+  return (
+    <SearchWindowClient initialSearchText="" initialResultsPromise={results} />
+  );
 }

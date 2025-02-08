@@ -9,15 +9,15 @@ import { getSearchResults } from "./data";
 
 type Props = {
   initialSearchText: string;
-  initialResults: SearchResultProps[];
+  initialResultsPromise: Promise<SearchResultProps[]>;
 };
 
 export function SearchWindowClient(props: Props) {
   console.log("SearchWindowClient");
 
   const [searchText, setSearchText] = useState(props.initialSearchText);
-  const [results, setResults] = useState<SearchResultProps[]>(
-    props.initialResults
+  const [results, setResultsPromise] = useState<Promise<SearchResultProps[]>>(
+    props.initialResultsPromise
   );
 
   async function updateSearchText(s: string) {
@@ -34,22 +34,15 @@ export function SearchWindowClient(props: Props) {
       // so text-search becomes terribly slow if the backend is slow.
       // (e.g.) If the backend returns in 1 second, then typing a 5-letter word,
       //        you will get the result 5 seconds later.
-      const searchResults = await getSearchResults(s); // This can throw an exception
-
-      // Nested startTransition()
-      // > Any async calls that are awaited in the action will be included in the Transition,
-      // > but currently require wrapping any set functions after the await in an additional startTransition
-      // https://react.dev/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition
-      startTransition(() => {
-        setResults(searchResults);
-      });
+      const promise = getSearchResults(s);
+      setResultsPromise(promise); // This can throw an exception
     });
   }
 
   return (
     <div className={styles.component}>
       <SearchBox searchText={searchText} onChange={updateSearchText} />
-      <SearchResults results={results} />
+      <SearchResults resultsPromise={results} />
       <div className={styles.footer}></div>
     </div>
   );
