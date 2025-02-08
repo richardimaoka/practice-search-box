@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 
   if (query) {
     const queried = data.filter((x) => x.title.includes(query));
-    console.log("GET filtered", queried);
+    console.log("GET filtered query=", query, queried);
 
     return Response.json(queried);
   } else {

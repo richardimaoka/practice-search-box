@@ -19,7 +19,7 @@ export function SearchBox(props: Props) {
 
   // Click-away while 日本語変換
   function onBlur(e: React.FocusEvent<HTMLInputElement>) {
-    if (props.onChange) {
+    if (props.onChange && props.searchText !== e.currentTarget.value) {
       props.onChange(e.currentTarget.value);
     }
   }
