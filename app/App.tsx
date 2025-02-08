@@ -2,12 +2,16 @@
 
 import { startTransition, Suspense, useState } from "react";
 import { ShowData } from "./ShowData";
+import { useTime } from "./data";
 
 export function App() {
   const [counter, setCounter] = useState(0);
+  const time = useTime();
   return (
     <div className="text-center">
       <h1 className="text-2xl">React App!</h1>
+      <p className="tabular-nums">🕒 {time}</p>
+      <p>{counter}</p>
       <Suspense fallback={<p>Loading...</p>}>
         <ShowData dataKey={counter} />
       </Suspense>

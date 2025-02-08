@@ -94,5 +94,17 @@
   {
     "title": "情報システムとは？",
     "path": ["部署について"]
+  },
+  {
+    "title": "make a wish",
+    "path": ["活動"]
+  },
+  {
+    "title": "we wish you a Merry X'mas!",
+    "path": ["活動"]
+  },
+  {
+    "title": "wecars",
+    "path": ["活動"]
   }
 ]
