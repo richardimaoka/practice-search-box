@@ -16,9 +16,11 @@ export async function getSearchResults(filter: string): Promise<Result[]> {
   const data = JSON.parse(fileContents) as Result[];
 
   if (filter === "") {
+    console.log("getSearchResults all", data);
     return data;
   } else {
     const filtered = data.filter((x) => x.title.includes(filter));
+    console.log("getSearchResults filtered", filtered);
     return filtered;
   }
 }

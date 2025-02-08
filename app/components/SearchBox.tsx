@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import styles from "./SearchBox.module.css";
 
 type Props = {
@@ -6,16 +7,21 @@ type Props = {
 };
 
 export function SearchBox(props: Props) {
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-    if (props.onChange) {
-      props.onChange(e.target.value);
+  // Using onKeyUp() because:
+  //  onChange() does not fire upon (日本語変換 ->) Enter
+  //  onKeyDown() has the pre-change value in e.currentTarget.value
+  function onKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
+    // isComposing === true, while 日本語変換
+    if (props.onChange && !e.nativeEvent.isComposing) {
+      props.onChange(e.currentTarget.value);
     }
+    console.log("onKeyUp", e.nativeEvent.isComposing, e.currentTarget.value);
   }
 
   return (
     <div className={styles.component}>
       <span className="material-symbols-outlined">search</span>
-      <input className={styles.input} onChange={onChange} />
+      <input className={styles.input} onKeyUp={onKeyUp} />
       <span className="material-symbols-outlined">filter_list</span>
     </div>
   );
