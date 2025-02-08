@@ -37,7 +37,8 @@ export function SearchWindowClient(props: Props) {
       const searchResults = await getSearchResults(s); // This can throw an exception
 
       // Nested startTransition()
-      // > Any async calls that are awaited in the action will be included in the Transition, but currently require wrapping any set functions after the await in an additional startTransition
+      // > Any async calls that are awaited in the action will be included in the Transition,
+      // > but currently require wrapping any set functions after the await in an additional startTransition
       // https://react.dev/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition
       startTransition(() => {
         setResults(searchResults);
