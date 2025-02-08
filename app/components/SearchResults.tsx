@@ -1,23 +1,16 @@
-import { SearchResult } from "./SearchResult";
+import { SearchResult, SearchResultProps } from "./SearchResult";
 import styles from "./SearchResults.module.css";
 
-type Props = {};
+type Props = {
+  results: SearchResultProps[];
+};
 
 export function SearchResults(props: Props) {
   return (
     <div className={styles.component}>
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
-      <SearchResult text={"Material Symbols Import"} />
+      {props.results.map((x, i) => (
+        <SearchResult key={i} title={x.title} breamdCrumbs={x.breamdCrumbs} />
+      ))}
     </div>
   );
 }

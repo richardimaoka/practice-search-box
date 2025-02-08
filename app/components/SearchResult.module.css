@@ -27,5 +27,15 @@
 }
 
 .text {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+}
+
+.title {
   font-size: 0.875rem;
+}
+
+.breadcrumb {
+  font-size: 0.6rem;
 }

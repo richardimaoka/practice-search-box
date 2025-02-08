@@ -1,10 +1,10 @@
-import { SearchWindow } from "./components/SearchWindow";
+import { SearchWindowServer } from "./components/SearchWindowServer";
 import styles from "./page.module.css";
 
 export default function Page() {
   return (
     <div className={styles.component}>
-      <SearchWindow />
+      <SearchWindowServer />
     </div>
   );
 }
