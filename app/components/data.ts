@@ -1,26 +1,15 @@
-"use server";
+// import { setTimeout } from "timers/promises";
 
-import { promises as fs } from "fs";
+import { Result } from "../api/search/types";
+import { SearchResultProps } from "./SearchResult";
 
-export type Result = {
-  title: string;
-  path: string[];
-};
-
-export async function getSearchResults(filter: string): Promise<Result[]> {
-  const fileContents = await fs.readFile(
-    process.cwd() + "/app/components/data.json",
-    "utf8"
+export async function getSearchResults(
+  filter: string
+): Promise<SearchResultProps[]> {
+  const response = await fetch(
+    `http://localhost:3000/api/search?query=${filter}`
   );
+  const results = (await response.json()) as Result[];
 
-  const data = JSON.parse(fileContents) as Result[];
-
-  if (filter === "") {
-    console.log("getSearchResults all", data);
-    return data;
-  } else {
-    const filtered = data.filter((x) => x.title.includes(filter));
-    console.log("getSearchResults filtered", filtered);
-    return filtered;
-  }
+  return results.map((x) => ({ title: x.title, breamdCrumbs: x.path }));
 }

@@ -5,27 +5,32 @@ import { SearchBox } from "./SearchBox";
 import { SearchResultProps } from "./SearchResult";
 import { SearchResults } from "./SearchResults";
 import styles from "./SearchWindowClient.module.css";
-import { getSearchResults, Result } from "./data";
+import { getSearchResults } from "./data";
 
 type Props = {
-  results: Result[];
+  initialSearchText: string;
+  initialResults: SearchResultProps[];
 };
 
-function toProps(results: Result[]): SearchResultProps[] {
-  return results.map((x) => ({ title: x.title, breadCrumbs: x.path }));
-}
-
 export function SearchWindowClient(props: Props) {
-  const [searchText, setSearchText] = useState("");
+  console.log("SearchWindowClient");
+
+  const [searchText, setSearchText] = useState(props.initialSearchText);
   const [results, setResults] = useState<SearchResultProps[]>(
-    toProps(props.results)
+    props.initialResults
   );
 
   async function updateSearchText(s: string) {
     setSearchText(s);
 
-    // This can throw an exception
-    const searchResults = await getSearchResults(s);
+    // Don't use Server Functions but use Route Handlers.
+    //
+    // Server Actions force requests queued and sequential,
+    // so text-search becomes terribly slow if the backend is slow.
+    //
+    // (e.g.) If the backend returns in 1 second, then typing a 5-letter word,
+    //        you will get the result 5 seconds later.
+    const searchResults = await getSearchResults(s); // This can throw an exception
     setResults(searchResults);
   }
 

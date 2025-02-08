@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React from "react";
 import styles from "./SearchBox.module.css";
 
 type Props = {
@@ -15,13 +15,19 @@ export function SearchBox(props: Props) {
     if (props.onChange && !e.nativeEvent.isComposing) {
       props.onChange(e.currentTarget.value);
     }
-    console.log("onKeyUp", e.nativeEvent.isComposing, e.currentTarget.value);
+  }
+
+  // Click-away while 日本語変換
+  function onBlur(e: React.FocusEvent<HTMLInputElement>) {
+    if (props.onChange) {
+      props.onChange(e.currentTarget.value);
+    }
   }
 
   return (
     <div className={styles.component}>
       <span className="material-symbols-outlined">search</span>
-      <input className={styles.input} onKeyUp={onKeyUp} />
+      <input className={styles.input} onKeyUp={onKeyUp} onBlur={onBlur} />
       <span className="material-symbols-outlined">filter_list</span>
     </div>
   );
