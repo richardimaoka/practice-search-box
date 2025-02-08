@@ -7,6 +7,8 @@ type Props = {
 };
 
 export function SearchResults(props: Props) {
+  // use(), to avoid race conditions
+  // https://github.com/facebook/react/issues/28914
   const results = use(props.resultsPromise);
 
   return (

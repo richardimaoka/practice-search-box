@@ -16,6 +16,9 @@ export function SearchWindowClient(props: Props) {
   console.log("SearchWindowClient");
 
   const [searchText, setSearchText] = useState(props.initialSearchText);
+
+  // Promise in state, to avoid race conditions
+  // https://github.com/facebook/react/issues/28914
   const [results, setResultsPromise] = useState<Promise<SearchResultProps[]>>(
     props.initialResultsPromise
   );
