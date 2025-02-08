@@ -23,5 +23,6 @@ export async function getSearchResultsAction(
     return queried;
   } else {
     console.log("getSearchResultsAction all", data);
-    return data
+    return data;
+  }
 }
